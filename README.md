@@ -41,21 +41,22 @@
     - deploy the provided sample manifests (`examples/plain_manifests`),
       check if they were correctly deployed (`kubectl get`),
       explain what these manifests do,
-      eventually delete them from your cluster
+      eventually, delete them from your cluster
 
 4. **Helm**
 
     - [documentation](https://helm.sh/docs/)
-    - in practice you don't write manifests with hardcoded values and don't deploy 
+    - in practice, you don't write manifests with hardcoded values and don't deploy 
       them manually one after the other
     - Helm is a package manager for Kubernetes application deployments
     - it provides a template engine for Kubernetes manifests and manages deployments (rolling updates, rollbacks etc.)
     - install the Helm CLI
     - deploy the provided sample Helm chart (`examples/helm`),
       check if application and all its components were deployed correctly,
-      eventually remove the application from your cluster
+      eventually, remove the application from your cluster
     - explain how to use values defined in `values.yaml` inside your manifests
     - how to use 3rd party Helm charts in your chart?
+    - you can find many existing charts in [Helm chart repository](https://github.com/helm/charts/tree/master/stable)
 
 5. **Application chart**
 
@@ -64,12 +65,19 @@
         - option B: clone the repo to the K3s worker nodes and build the Dockerfiles there
     - create a Helm chart for our application
     - decide which components ("services" in Docker-Compose) are already present as Helm charts and include them in our chart
-    - for another components write appropriate Helm templates (deployments, services, etc.) 
-    - make sure to handle volumes! (for simplicity you can use hostPaths, but in practice you should use a Volume Provider, like EBS, Cinder, NFS etc.)
+    - for other components write appropriate Helm templates (deployments, services, etc.) 
+    - make sure to handle volumes! (for simplicity you can use hostPaths, but in practice, you should use a Volume Provider, like EBS, Cinder, NFS etc.)
+    - add appropriate liveness and readiness probes
 
 6. **Application deployment**
     - deploy the prepared application chart to your Kubernetes cluster
     - check if everything works fine
     - make some change in the `values.yaml` file (e.g. increase the replicas of the text embedding worker) and perform a rolling update
     - rollback the change
+
+7. **Application check**
+    - make sure that everything is working correctly
+        - data is collected
+        - you can see changes on the Grafana dashboard
+        - you can see changes on the Redash dashboard
 
