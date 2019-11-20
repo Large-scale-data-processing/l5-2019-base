@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-sample-page
+data:
+  index.html: |
+    <html>
+      <head>
+        <title>Example page</title>
+      </head>
+      <body>
+        <h1>This page is served via Nginx!</h1>
+      </body>
+    </html>
